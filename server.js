@@ -10,6 +10,8 @@ import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import productRouter from './routes/productRoutes.js'
 import cookieParser from "cookie-parser";
+import categoryRouter from "./routes/categoryRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 // dot env config
 dotenv.config();
 
@@ -19,7 +21,7 @@ connectDB()
 cloudinary.v2.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret:process.env.CLOUDINARY_SECRET
+    api_secret: process.env.CLOUDINARY_SECRET
 })
 
 // rest object
@@ -37,14 +39,15 @@ app.use(cookieParser())
 app.use('/api/v1', testRoutes)
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/product', productRouter)
+app.use('/api/v1/category', categoryRouter)
+app.use('/api/v1/order', orderRouter)
 
 // port
 const PORT = process.env.PORT;
 
 // listen 
-
 app.listen(PORT, () => {
     console.log(`Server Running on ${PORT} on ${process.env.NODE_ENV} Mode`.bgMagenta.white);
 })
 
-// 25 video completed
+// 33 video completed
