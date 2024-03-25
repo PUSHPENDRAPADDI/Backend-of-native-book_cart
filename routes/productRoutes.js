@@ -8,7 +8,7 @@ import {
     updateProductController,
     updateProductImageController
 } from '../controllers/productController.js';
-import { isAuth } from '../middlewares/authMiddleware.js'
+import { isAdmin, isAuth } from '../middlewares/authMiddleware.js'
 import { singleUpload } from '../middlewares/multer.js'
 
 const productRouter = express.Router();
@@ -20,18 +20,18 @@ productRouter.get('/get-all', getAllProductController)
 productRouter.get('/:id', getSingleProductController)
 
 // Create product
-productRouter.post('/createProduct', isAuth, singleUpload, createProductController)
+productRouter.post('/createProduct', isAuth, isAdmin, singleUpload, createProductController)
 
 // Update product
-productRouter.put('/:id', isAuth, updateProductController)
+productRouter.put('/:id', isAuth, isAdmin, updateProductController)
 
 // Update product image
-productRouter.put('/image/:id', isAuth, singleUpload, updateProductImageController)
+productRouter.put('/image/:id', isAuth, isAdmin, singleUpload, updateProductImageController)
 
 // delete product image
-productRouter.delete('/delete-image/:id', isAuth, deleteProductImageController)
+productRouter.delete('/delete-image/:id', isAuth, isAdmin, deleteProductImageController)
 
 // delete product 
-productRouter.delete('/delete/:id', isAuth, deleteProductController)
+productRouter.delete('/delete/:id', isAuth, isAdmin, deleteProductController)
 
 export default productRouter;

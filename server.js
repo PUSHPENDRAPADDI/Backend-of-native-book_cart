@@ -12,11 +12,15 @@ import productRouter from './routes/productRoutes.js'
 import cookieParser from "cookie-parser";
 import categoryRouter from "./routes/categoryRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
+import Stripe from "stripe"
 // dot env config
 dotenv.config();
 
 // data base connection
 connectDB()
+
+// stripe configuration
+export const stripe = new Stripe(process.env.STRIP_API_KEY)
 
 cloudinary.v2.config({
     cloud_name: process.env.CLOUDINARY_NAME,
@@ -50,4 +54,4 @@ app.listen(PORT, () => {
     console.log(`Server Running on ${PORT} on ${process.env.NODE_ENV} Mode`.bgMagenta.white);
 })
 
-// 33 video completed
+// 36 video completed
