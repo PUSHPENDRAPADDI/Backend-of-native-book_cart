@@ -12,7 +12,10 @@ import productRouter from './routes/productRoutes.js'
 import cookieParser from "cookie-parser";
 import categoryRouter from "./routes/categoryRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
-import Stripe from "stripe"
+import Stripe from "stripe";
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize'
+
 // dot env config
 dotenv.config();
 
@@ -34,10 +37,12 @@ const app = express();
 
 // middleware
 
+app.use(helmet());
+app.use(mongoSanitize());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // routes
 app.use('/api/v1', testRoutes)
@@ -54,4 +59,4 @@ app.listen(PORT, () => {
     console.log(`Server Running on ${PORT} on ${process.env.NODE_ENV} Mode`.bgMagenta.white);
 })
 
-// 36 video completed
+// 40 video completed

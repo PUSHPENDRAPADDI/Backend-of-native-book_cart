@@ -5,6 +5,8 @@ import {
     deleteProductImageController,
     getAllProductController,
     getSingleProductController,
+    getTopProductController,
+    productReviewController,
     updateProductController,
     updateProductImageController
 } from '../controllers/productController.js';
@@ -15,6 +17,9 @@ const productRouter = express.Router();
 
 // router
 productRouter.get('/get-all', getAllProductController)
+
+// Get top product
+productRouter.get('/getTopProduct', getTopProductController)
 
 // Get single product 
 productRouter.get('/:id', getSingleProductController)
@@ -34,4 +39,6 @@ productRouter.delete('/delete-image/:id', isAuth, isAdmin, deleteProductImageCon
 // delete product 
 productRouter.delete('/delete/:id', isAuth, isAdmin, deleteProductController)
 
+// REVIEW PRODUCT
+productRouter.put("/:id/review", isAuth, productReviewController);
 export default productRouter;
