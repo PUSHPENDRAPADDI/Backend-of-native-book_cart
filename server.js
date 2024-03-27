@@ -58,5 +58,3 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server Running on ${PORT} on ${process.env.NODE_ENV} Mode`.bgMagenta.white);
 })
-
-// 40 video completed
