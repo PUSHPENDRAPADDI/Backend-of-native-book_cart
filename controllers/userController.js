@@ -7,7 +7,14 @@ import cloudinary from 'cloudinary'
 export const registerController = async (req, res) => {
     try {
         const { name, email, password, address, city, country, phone, answer } = req.body;
-        if (!name || !email || !password || !city || !address || !country || !phone || !answer) {
+        if (!name || 
+            !email || 
+            !password || 
+            !city || 
+            !address || 
+            !country || 
+            !phone || 
+            !answer) {
             return res.status(500).send({
                 success: false,
                 message: "Please provide all fields"
